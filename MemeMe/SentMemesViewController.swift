@@ -9,6 +9,7 @@
 import UIKit
 
 class SentMemesViewController: UITabBarController {
+    var memes: [Meme]!
     
     @IBAction func addPressed(sender: UIBarButtonItem) {
         println("Adding new meme...")

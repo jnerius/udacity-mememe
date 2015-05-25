@@ -126,7 +126,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jH6-XS-eBY">
-                                <rect key="frame" x="0.0" y="20" width="414" height="716"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </imageView>
                             <navigationBar alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vOT-1C-4Xj">
@@ -164,40 +164,58 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="MJP-VK-RX1"/>
                                 </items>
                             </toolbar>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="TOP" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pmH-2x-tz5">
-                                <rect key="frame" x="16" y="82" width="382" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pmH-2x-tz5">
+                                <rect key="frame" x="16" y="69" width="382" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
+                                <connections>
+                                    <outlet property="delegate" destination="cew-93-Ifb" id="bK2-5N-oeC"/>
+                                </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="BOTTOM" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hj2-R6-3mX">
-                                <rect key="frame" x="16" y="639" width="382" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hj2-R6-3mX">
+                                <rect key="frame" x="16" y="665" width="382" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
+                                <connections>
+                                    <outlet property="delegate" destination="cew-93-Ifb" id="T9a-Wn-fNf"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <constraints>
                             <constraint firstItem="jH6-XS-eBY" firstAttribute="top" secondItem="cCx-Ww-07U" secondAttribute="bottom" id="0ua-pN-zfw"/>
+                            <constraint firstItem="pmH-2x-tz5" firstAttribute="leading" secondItem="dkC-pB-rpJ" secondAttribute="leadingMargin" id="2do-ah-T6v"/>
+                            <constraint firstItem="hj2-R6-3mX" firstAttribute="trailing" secondItem="dkC-pB-rpJ" secondAttribute="trailingMargin" id="4GH-2n-Hjf"/>
                             <constraint firstItem="G5h-s0-bm0" firstAttribute="top" secondItem="TYq-KS-4on" secondAttribute="bottom" id="7LY-bh-FL4"/>
                             <constraint firstAttribute="trailingMargin" secondItem="vOT-1C-4Xj" secondAttribute="trailing" constant="-16" id="AyF-7m-cPz"/>
+                            <constraint firstItem="pmH-2x-tz5" firstAttribute="trailing" secondItem="dkC-pB-rpJ" secondAttribute="trailingMargin" id="Chu-jS-ZmP"/>
                             <constraint firstItem="G5h-s0-bm0" firstAttribute="top" secondItem="jH6-XS-eBY" secondAttribute="bottom" id="FnP-9y-IjG"/>
                             <constraint firstAttribute="trailingMargin" secondItem="jH6-XS-eBY" secondAttribute="trailing" constant="-16" id="IJE-Gj-WPb"/>
                             <constraint firstAttribute="centerX" secondItem="hj2-R6-3mX" secondAttribute="centerX" id="Inc-Cq-MVO"/>
                             <constraint firstAttribute="centerX" secondItem="pmH-2x-tz5" secondAttribute="centerX" id="RE7-UD-rk5"/>
                             <constraint firstItem="TYq-KS-4on" firstAttribute="leading" secondItem="dkC-pB-rpJ" secondAttribute="leadingMargin" constant="-16" id="S6q-JJ-2RH"/>
+                            <constraint firstItem="hj2-R6-3mX" firstAttribute="leading" secondItem="dkC-pB-rpJ" secondAttribute="leadingMargin" id="buk-0d-vbf"/>
                             <constraint firstAttribute="trailingMargin" secondItem="TYq-KS-4on" secondAttribute="trailing" constant="-16" id="cWh-HJ-tZa"/>
                             <constraint firstItem="jH6-XS-eBY" firstAttribute="leading" secondItem="dkC-pB-rpJ" secondAttribute="leadingMargin" constant="-16" id="dae-Mf-Wk1"/>
-                            <constraint firstItem="TYq-KS-4on" firstAttribute="top" secondItem="hj2-R6-3mX" secondAttribute="bottom" constant="23" id="nxQ-vt-OZd"/>
-                            <constraint firstItem="pmH-2x-tz5" firstAttribute="top" secondItem="cCx-Ww-07U" secondAttribute="bottom" constant="62" id="qnx-3e-cTa"/>
+                            <constraint firstItem="jH6-XS-eBY" firstAttribute="top" secondItem="dkC-pB-rpJ" secondAttribute="topMargin" id="ecc-mW-0MG"/>
+                            <constraint firstItem="TYq-KS-4on" firstAttribute="top" secondItem="hj2-R6-3mX" secondAttribute="bottom" constant="10" id="nxQ-vt-OZd"/>
+                            <constraint firstItem="pmH-2x-tz5" firstAttribute="top" secondItem="cCx-Ww-07U" secondAttribute="bottom" constant="49" id="qnx-3e-cTa"/>
                             <constraint firstItem="vOT-1C-4Xj" firstAttribute="leading" secondItem="dkC-pB-rpJ" secondAttribute="leadingMargin" constant="-16" id="tB4-4o-ZtF"/>
                             <constraint firstItem="vOT-1C-4Xj" firstAttribute="top" secondItem="cCx-Ww-07U" secondAttribute="bottom" id="wPc-Cy-nIp"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="0ua-pN-zfw"/>
+                            </mask>
+                        </variation>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
+                        <outlet property="bottomBar" destination="TYq-KS-4on" id="lfd-dT-88M"/>
                         <outlet property="bottomText" destination="hj2-R6-3mX" id="Z0H-TE-CuW"/>
                         <outlet property="cameraButton" destination="eKk-Ty-COB" id="Pe6-pn-Ta9"/>
                         <outlet property="imageView" destination="jH6-XS-eBY" id="PNK-9O-Bvo"/>
                         <outlet property="shareButton" destination="p6M-1T-Z1U" id="ukf-Px-6Q0"/>
+                        <outlet property="topBar" destination="vOT-1C-4Xj" id="M45-cU-dkJ"/>
                         <outlet property="topText" destination="pmH-2x-tz5" id="aSJ-ob-BZa"/>
                     </connections>
                 </viewController>
