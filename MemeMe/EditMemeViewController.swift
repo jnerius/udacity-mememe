@@ -151,7 +151,7 @@ class EditMemeViewController: UIViewController, UIImagePickerControllerDelegate,
     func keyboardWillHide(notification: NSNotification) {
         // Only move frame if bottom text field is first responder
         if (self.bottomText.isFirstResponder()) {
-            self.view.frame.origin.y += getKeyboardHeight(notification)
+            self.view.frame.origin.y = 0
         }
     }
     
