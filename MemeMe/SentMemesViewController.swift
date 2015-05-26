@@ -10,9 +10,7 @@ import UIKit
 
 class SentMemesViewController: UITabBarController {
     @IBAction func addPressed(sender: UIBarButtonItem) {
-        if let editMemeController = storyboard?.instantiateViewControllerWithIdentifier("EditMemeViewController") as? EditMemeViewController {
-            presentViewController(editMemeController, animated: true, completion: nil)
-        }
+        presentEditVC()
     }
     
     override func viewDidLoad() {
@@ -20,5 +18,14 @@ class SentMemesViewController: UITabBarController {
         
         // Set tranparency on navigation controller
         self.navigationController?.navigationBar.alpha = 0.2
+        
+        // The first time the view loads, present the Editor
+        presentEditVC()
+    }
+    
+    func presentEditVC() {
+        if let editMemeController = storyboard?.instantiateViewControllerWithIdentifier("EditMemeViewController") as? EditMemeViewController {
+            presentViewController(editMemeController, animated: true, completion: nil)
+        }
     }
 }
