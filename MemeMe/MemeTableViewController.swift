@@ -33,7 +33,6 @@ class MemeTableViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        println("cellForRowAtIndexPath: \(indexPath.row)")
         let cell = tableView.dequeueReusableCellWithIdentifier("MemeTableCell") as! MemeTableViewCell
         let meme = memes[indexPath.row]
         
@@ -48,5 +47,17 @@ class MemeTableViewController: UIViewController, UITableViewDelegate, UITableVie
         
         memeDetailVC.meme = self.memes[indexPath.row]
         self.navigationController?.pushViewController(memeDetailVC, animated: true)
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+        if (editingStyle == UITableViewCellEditingStyle.Delete) {
+            // Delete meme from main data array as well as our local copy
+            (UIApplication.sharedApplication().delegate as! AppDelegate).memes.removeAtIndex(indexPath.row)
+            memes.removeAtIndex(indexPath.row)
+            
+            // Delete meme from table view
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+        }
     }
 }
