@@ -12,6 +12,8 @@ class EditMemeViewController: UIViewController, UIImagePickerControllerDelegate,
     
     var originalImage: UIImage?
     var memedImage: UIImage?
+    
+    // Prep text attributes
     let memeTextAttributes = [
         NSStrokeColorAttributeName:     UIColor.blackColor(),
         NSForegroundColorAttributeName: UIColor.whiteColor(),
@@ -19,6 +21,7 @@ class EditMemeViewController: UIViewController, UIImagePickerControllerDelegate,
         NSStrokeWidthAttributeName:     -5.0
     ]
     
+    // Keep track of whether or not the top/bottom text fields have been cleared yet
     var topCleared = false
     var bottomCleared = false
     
@@ -56,10 +59,9 @@ class EditMemeViewController: UIViewController, UIImagePickerControllerDelegate,
         let activityItems = [memedImage]
         let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
         
+        // Set up completion handler and save meme
         activityVC.completionWithItemsHandler = {
             activity, completed, items, error in
-            
-            println("In completionWithItemsHandler")
             
             if completed {
                 self.saveMeme()
@@ -73,7 +75,8 @@ class EditMemeViewController: UIViewController, UIImagePickerControllerDelegate,
     /*** UIViewController Overrides ***/
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        // Set up initial text inputs
         topText.text = "TOP"
         topText.defaultTextAttributes = memeTextAttributes
         topText.textAlignment = .Center
@@ -82,12 +85,14 @@ class EditMemeViewController: UIViewController, UIImagePickerControllerDelegate,
         bottomText.defaultTextAttributes = memeTextAttributes
         bottomText.textAlignment = .Center
         
+        // Initially, the share button should be disabled
         disableShareButton()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
+        // Enable/Disable camera based on device capabilities and subscribe to keyboard notifications
         self.cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
         self.subscribeToKeyboardNotifications()
     }
@@ -95,6 +100,7 @@ class EditMemeViewController: UIViewController, UIImagePickerControllerDelegate,
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         
+        // Unsubscribe from keyboard notifications
         self.unsubscribeFromKeyboardNotifications()
     }
     
@@ -112,6 +118,8 @@ class EditMemeViewController: UIViewController, UIImagePickerControllerDelegate,
     
     /*** UITextFieldDelegate Methods ***/
     func textFieldDidBeginEditing(textField: UITextField) {
+        // Only clear text if this is the first time. This allows the user to actually
+        // use the values "TOP" or "BOTTOM" in their meme if they choose to.
         if (topCleared == false && textField.text == "TOP") {
             textField.text = "";
             topCleared = true;
@@ -166,24 +174,29 @@ class EditMemeViewController: UIViewController, UIImagePickerControllerDelegate,
     }
     
     /*** Utility Functions ***/
+    // Function to enable share button
     func enableShareButton() {
         self.shareButton.enabled = true
     }
     
+    // Function to disable share button
     func disableShareButton() {
         self.shareButton.enabled = false
     }
     
+    // Function to hide UI elements when taking our snapshot
     func hideUI() {
         topBar.hidden = true;
         bottomBar.hidden = true;
     }
     
+    // Function to re-enable UI elements after taking snapshot
     func showUI() {
         topBar.hidden = false;
         bottomBar.hidden = false;
     }
     
+    // Here's where the magic happens. Generate the Memed image
     func generateMemedImage() -> UIImage {
         hideUI();
         
@@ -204,6 +217,9 @@ class EditMemeViewController: UIViewController, UIImagePickerControllerDelegate,
             originalImage: self.originalImage!,
             memeImage: self.memedImage!
         )
+        
+        // Save our meme to the AppDelegate memes array
+        (UIApplication.sharedApplication().delegate as! AppDelegate).memes.append(meme)
     }
 }
 

@@ -9,13 +9,16 @@
 import UIKit
 
 class SentMemesViewController: UITabBarController {
-    var memes: [Meme]!
-    
     @IBAction func addPressed(sender: UIBarButtonItem) {
-        println("Adding new meme...")
-        
         if let editMemeController = storyboard?.instantiateViewControllerWithIdentifier("EditMemeViewController") as? EditMemeViewController {
             presentViewController(editMemeController, animated: true, completion: nil)
         }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Set tranparency on navigation controller
+        self.navigationController?.navigationBar.alpha = 0.2
     }
 }
